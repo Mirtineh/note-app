@@ -1,13 +1,26 @@
 import { FunctionComponent } from "react";
 import NoteForm from "../common/NoteForm";
+import { NoteData, Tag } from "../App";
 
-interface NewNoteProps {}
+interface NewNoteProps {
+  onSubmit: (data: NoteData) => void;
+  onAddTag: (data: Tag) => void;
+  availableTags: Tag[];
+}
 
-const NewNote: FunctionComponent<NewNoteProps> = () => {
+const NewNote: FunctionComponent<NewNoteProps> = ({
+  onSubmit,
+  onAddTag,
+  availableTags,
+}) => {
   return (
     <>
       <h1>This is the new note page</h1>
-      <NoteForm />
+      <NoteForm
+        onSubmit={onSubmit}
+        onAddTag={onAddTag}
+        availableTags={availableTags}
+      />
     </>
   );
 };
