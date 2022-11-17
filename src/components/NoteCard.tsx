@@ -13,7 +13,7 @@ const NoteCard: FunctionComponent<NoteCardProps> = ({ id, title, tags }) => {
   return (
     <>
       <Link to={`/${id}`}>
-        <div className="flex justify-center items-center w-full h-full border rounded-md p-4">
+        <div className="flex justify-center items-center w-full h-full border rounded-md p-4 hover:shadow-md">
           <div className="flex flex-col space-y-3">
             <span>{title}</span>
             {tags.length > 0 && (
