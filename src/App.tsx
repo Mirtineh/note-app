@@ -3,6 +3,7 @@ import { Routes, Route, Navigate } from "react-router-dom";
 import NewNote from "./components/NewNote";
 import { useLocalStorage } from "./hooks/useLocalStorage";
 import { v4 as uuidV4 } from "uuid";
+import NoteList from "./components/NoteList";
 
 export interface NoteData {
   title: string;
@@ -51,7 +52,10 @@ function App() {
 
   return (
     <Routes>
-      <Route path="/" element={<h1>This is the home</h1>} />
+      <Route
+        path="/"
+        element={<NoteList availableTags={tags} notes={notesWithTags} />}
+      />
       <Route
         path="/new"
         element={
