@@ -15,12 +15,14 @@ const NewNote: FunctionComponent<NewNoteProps> = ({
 }) => {
   return (
     <>
-      <h1>This is the new note page</h1>
-      <NoteForm
-        onSubmit={onSubmit}
-        onAddTag={onAddTag}
-        availableTags={availableTags}
-      />
+      <div className="max-w-md mx-auto">
+        <h1 className="text-center text-3xl mb-5">New Note</h1>
+        <NoteForm
+          onSubmit={onSubmit}
+          onAddTag={onAddTag}
+          availableTags={availableTags}
+        />
+      </div>
     </>
   );
 };

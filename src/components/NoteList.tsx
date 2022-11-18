@@ -2,6 +2,7 @@ import { FunctionComponent, useMemo, useState } from "react";
 import { Link } from "react-router-dom";
 import ReactSelect from "react-select/creatable";
 import { Note, Tag } from "../App";
+import EditTagsModal from "./EditTagsModal";
 import NoteCard from "./NoteCard";
 
 interface NoteListProps {
@@ -82,6 +83,7 @@ const NoteList: FunctionComponent<NoteListProps> = ({
           ))}
         </div>
       </div>
+      <EditTagsModal />
     </>
   );
 };

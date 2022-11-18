@@ -1,12 +1,15 @@
 import { FunctionComponent } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useNote } from "./NoteLayout";
 import ReactMarkdown from "react-markdown";
 
-interface NoteProps {}
+interface NoteProps {
+  onDelete: (id: string) => void;
+}
 
-const Note: FunctionComponent<NoteProps> = () => {
+const Note: FunctionComponent<NoteProps> = ({ onDelete }) => {
   const note = useNote();
+  const navigate = useNavigate();
   return (
     <>
       <div className="flex flex-col gap-6 m-8">
@@ -32,7 +35,13 @@ const Note: FunctionComponent<NoteProps> = () => {
                 Edit
               </button>
             </Link>
-            <button className="p-2 border border-red-500 text-red-500 rounded-md">
+            <button
+              className="p-2 border border-red-500 text-red-500 rounded-md"
+              onClick={() => {
+                onDelete(note.id);
+                navigate("/");
+              }}
+            >
               Delete
             </button>
             <Link to="..">

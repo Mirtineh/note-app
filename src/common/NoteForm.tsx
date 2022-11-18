@@ -4,27 +4,30 @@ import CreatableReactSelect from "react-select/creatable";
 import { NoteData, Tag } from "../App";
 import { v4 as uuidV4 } from "uuid";
 
-interface NoteFormProps {
+type NoteFormProps = {
   onSubmit: (note: NoteData) => void;
   onAddTag: (data: Tag) => void;
   availableTags: Tag[];
-}
+} & Partial<NoteData> & {};
 
 const NoteForm: FunctionComponent<NoteFormProps> = ({
   onSubmit,
   onAddTag,
   availableTags,
+  title = "",
+  content = "",
+  tags = [],
 }) => {
   const titleRef = useRef<HTMLInputElement>(null);
   const contentRef = useRef<HTMLTextAreaElement>(null);
-  const [tags, setTags] = useState<Tag[]>([]);
+  const [selectedTags, setSelectedTags] = useState<Tag[]>(tags);
   const navigate = useNavigate();
   function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     onSubmit({
       title: titleRef.current!.value,
       content: contentRef.current!.value,
-      tags: tags,
+      tags: selectedTags,
     });
     navigate("..");
   }
@@ -39,6 +42,7 @@ const NoteForm: FunctionComponent<NoteFormProps> = ({
               className="w-full rounded-md"
               type="text"
               name="title"
+              defaultValue={title}
               required
             />
           </label>
@@ -48,16 +52,16 @@ const NoteForm: FunctionComponent<NoteFormProps> = ({
               onCreateOption={(label) => {
                 const newTag = { id: uuidV4(), label };
                 onAddTag(newTag);
-                setTags((prev) => [...prev, newTag]);
+                setSelectedTags((prev) => [...prev, newTag]);
               }}
-              value={tags.map((tag) => {
+              value={selectedTags.map((tag) => {
                 return { label: tag.label, value: tag.id };
               })}
               options={availableTags.map((tag) => {
                 return { label: tag.label, value: tag.id };
               })}
               onChange={(tags) => {
-                setTags(
+                setSelectedTags(
                   tags.map((tag: any) => {
                     return { id: tag.value, label: tag.label };
                   })
@@ -74,6 +78,7 @@ const NoteForm: FunctionComponent<NoteFormProps> = ({
               name=""
               id=""
               rows={10}
+              defaultValue={content}
               required
             ></textarea>
           </label>
