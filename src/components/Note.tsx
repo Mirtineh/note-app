@@ -31,12 +31,12 @@ const Note: FunctionComponent<NoteProps> = ({ onDelete }) => {
           </div>
           <div className="space-x-2">
             <Link to={`/${note.id}/edit`}>
-              <button className="p-2 bg-blue-800 rounded-md text-white border">
+              <button className="p-2 bg-blue-800 rounded-md text-white border hover:bg-blue-900">
                 Edit
               </button>
             </Link>
             <button
-              className="p-2 border border-red-500 text-red-500 rounded-md"
+              className="p-2 border border-red-500 text-red-500 rounded-md hover:bg-red-600 hover:text-white"
               onClick={() => {
                 onDelete(note.id);
                 navigate("/");
@@ -45,7 +45,9 @@ const Note: FunctionComponent<NoteProps> = ({ onDelete }) => {
               Delete
             </button>
             <Link to="..">
-              <button className="p-2 border rounded-md">Back</button>
+              <button className="p-2 border rounded-md hover:bg-slate-400 hover:text-white">
+                Back
+              </button>
             </Link>
           </div>
         </div>

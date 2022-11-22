@@ -40,12 +40,12 @@ const NoteList: FunctionComponent<NoteListProps> = ({
           <h1 className="text-3xl">Notes</h1>
           <div className="space-x-2">
             <Link to="/new">
-              <button className="p-2 bg-blue-700 rounded-md text-white border">
+              <button className="p-2 bg-blue-700 hover:bg-blue-900 rounded-md text-white border">
                 Create
               </button>
             </Link>
             <button
-              className="p-2 border rounded-md"
+              className="p-2 border rounded-md hover:bg-slate-400 hover:text-white"
               onClick={() => {
                 setModalOpen(true);
               }}

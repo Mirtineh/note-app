@@ -83,11 +83,17 @@ const NoteForm: FunctionComponent<NoteFormProps> = ({
             ></textarea>
           </label>
           <div className="col-span-2 justify-self-end space-x-4">
-            <button className="bg-blue-600 rounded-md w-fit p-2" type="submit">
+            <button
+              className="bg-blue-700 hover:bg-blue-900 text-white rounded-md w-fit p-2"
+              type="submit"
+            >
               Save
             </button>
             <Link to="..">
-              <button className="bg-red-500 rounded-md p-2" type="button">
+              <button
+                className="border border-red-600 text-red-600 hover:bg-red-600 hover:text-white rounded-md p-2"
+                type="button"
+              >
                 Cancel
               </button>
             </Link>

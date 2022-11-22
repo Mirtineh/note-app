@@ -33,7 +33,7 @@ const EditTagsModal: FunctionComponent<EditTagsModalProps> = ({
 
               <FontAwesomeIcon
                 icon={faClose}
-                className=""
+                className="p-3 rounded-md hover:cursor-pointer hover:bg-red-900 hover:text-white"
                 onClick={() => onClose()}
               ></FontAwesomeIcon>
             </div>
@@ -47,10 +47,10 @@ const EditTagsModal: FunctionComponent<EditTagsModalProps> = ({
                     defaultValue={tag.label}
                     onChange={(e) => onUpdateTag(tag.id, e.target.value)}
                   />
-                  <div className="p-3 border rounded-md">
+                  <div className="p-3 border rounded-md hover:bg-red-600 hover:cursor-pointer group">
                     <FontAwesomeIcon
                       icon={faClose}
-                      className="text-red-700"
+                      className="text-red-700 group-hover:text-white"
                       onClick={() => onDeleteTag(tag.id)}
                     ></FontAwesomeIcon>
                   </div>
@@ -59,7 +59,7 @@ const EditTagsModal: FunctionComponent<EditTagsModalProps> = ({
             </div>
             <div className="flex flex-row-reverse">
               <button
-                className="p-2 bg-blue-900 rounded-md mt-5 text-white"
+                className="p-2 bg-blue-800 rounded-md mt-5 text-white hover:bg-blue-900"
                 onClick={() => onClose()}
               >
                 Close
