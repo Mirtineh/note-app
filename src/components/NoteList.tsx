@@ -8,14 +8,19 @@ import NoteCard from "./NoteCard";
 interface NoteListProps {
   availableTags: Tag[];
   notes: Note[];
+  onUpdateTag: (id: string, label: string) => void;
+  onDeleteTag: (id: string) => void;
 }
 
 const NoteList: FunctionComponent<NoteListProps> = ({
   availableTags,
   notes,
+  onUpdateTag,
+  onDeleteTag,
 }) => {
   const [tags, setTags] = useState<Tag[]>([]);
   const [title, setTitle] = useState("");
+  const [isModalOpen, setModalOpen] = useState(false);
   const filteredNotes = useMemo(() => {
     return notes.filter((note) => {
       return (
@@ -39,7 +44,14 @@ const NoteList: FunctionComponent<NoteListProps> = ({
                 Create
               </button>
             </Link>
-            <button className="p-2 border rounded-md">Edit Tags</button>
+            <button
+              className="p-2 border rounded-md"
+              onClick={() => {
+                setModalOpen(true);
+              }}
+            >
+              Edit Tags
+            </button>
           </div>
         </div>
         <form className="flex space-x-4 my-4 items-center">
@@ -83,7 +95,15 @@ const NoteList: FunctionComponent<NoteListProps> = ({
           ))}
         </div>
       </div>
-      <EditTagsModal />
+      <EditTagsModal
+        availableTags={availableTags}
+        isOpen={isModalOpen}
+        onClose={() => {
+          setModalOpen(false);
+        }}
+        onUpdateTag={onUpdateTag}
+        onDeleteTag={onDeleteTag}
+      />
     </>
   );
 };
